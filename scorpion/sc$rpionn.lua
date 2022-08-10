@@ -7,17 +7,15 @@
 --██████╔╝╚█████╔╝╚█████╔╝██║░░██║██║░░░░░██║╚█████╔╝██║░╚███║
 --╚═════╝░░╚════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝
 
-local Lib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local keyLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local keyWindow = Lib:MakeWindow({Name = "Scorpion", HidePremium = false, SaveConfig = true, ConfigFolder = "sc$rpion", IntroEnabled = false})
+local keyWindow = keyLib:MakeWindow({Name = "Scorpion", HidePremium = false, SaveConfig = true, ConfigFolder = "sc$rpion", IntroEnabled = false})
 
 local keyTab = keyWindow:MakeTab({
 	Name = "Key",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
-
-if 
 
 keyTab:AddTextbox({
 	Name = "Key",
@@ -28,9 +26,15 @@ keyTab:AddTextbox({
 	end	  
 })
 
+if key == "JkdGklh4057" then
+	keyLib:Destroy()
+end
+
 rconsoleprint("scorpion was executed, please dont close this window, made by chumimin'#2506")
 
 wait(3)
+
+local Lib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = Lib:MakeWindow({Name = "Scorpion", HidePremium = false, SaveConfig = true, ConfigFolder = "sc$rpion", IntroEnabled = true, IntroText = "Scorpion is executed."})
 

@@ -1,6 +1,6 @@
 local keyGen = {}
 
-local function keyGen:GetKey()
+function keyGen.GetKey()
 	local function generateLetter()
 
 		local randomBigChar = string.char(math.random(65,90)).. string.char(math.random(65,90)).. string.char(math.random(97, 122)).. string.char(math.random(65,90)).. string.char(math.random(97, 122)).. string.char(math.random(97, 122)).. string.char(math.random(97, 122))
@@ -14,4 +14,4 @@ local function keyGen:GetKey()
 	token = token.. generatedKey
 end
 
-return keyGen
+return keyGen;

@@ -11,14 +11,12 @@ local blacklisted = {
 
 }
 
-function data:GetPremiumUser(table)
-    table.insert(table, premiums)
-    return table
+function data:GetPremiumUser()
+    return premiums
 end
 
-function data:GetBlacklistedUsers(table)
-    table.insert(table, blacklisted)
-    return table
+function data:GetBlacklistedUsers()
+    return blacklisted
 end
 
 return data

@@ -16,7 +16,16 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
+local Home = Window:CreateTab("Home")
 local Automation = Window:CreateTab("Automation")
+
+local NameHome = Home:CreateLabel("Hello, "..game.Players.LocalPlayer.Name.."!")
+local DestroyButton = Home:CreateButton({
+	Name = "Destroy Script",
+	Callback = function()
+		Rayfield:Destroy()
+	end,
+})
 
 local DarkMatteringToggle = Automation:CreateToggle({
 	Name = "Dark Mattering",
@@ -92,7 +101,7 @@ local FusingToggle = Automation:CreateToggle({
 	end,
 })
 
-local Autoegg = Tab:CreateToggle({
+local Autoegg = Automation:CreateToggle({
 	Name = "Auto-egg",
 	CurrentValue = false,
 	Flag = "AUTOEGG", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -108,7 +117,7 @@ local Autoegg = Tab:CreateToggle({
                 workspace.__THINGS.__REMOTES["buy egg"]:InvokeServer(ohTable1)
             end    
         end
-end,
+	end,
 })
 
 Rayfield:LoadConfiguration()

@@ -92,11 +92,23 @@ local FusingToggle = Automation:CreateToggle({
 	end,
 })
 
-local vu = game:GetService("VirtualUser")
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-   wait(1)
-   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-end)
+local Autoegg = Tab:CreateToggle({
+	Name = "Auto-egg",
+	CurrentValue = false,
+	Flag = "AUTOEGG", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		v1 = Value
+
+        if v1 then
+            while v1 do wait(1)
+                local ohTable1 = {
+                    [1] = "Cursed Egg",
+                    [2] = false
+                    }
+                workspace.__THINGS.__REMOTES["buy egg"]:InvokeServer(ohTable1)
+            end    
+        end
+end,
+})
 
 Rayfield:LoadConfiguration()

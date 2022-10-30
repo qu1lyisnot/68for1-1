@@ -110,7 +110,7 @@ if table.find(module.MissingHub, game.Player.LocalPlayer.Name) then
 		CurrentValue = false,
 		Flag = "AUTOEGG", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 		Callback = function(Value)
-			v1 = Value
+		v1 = Value
 
 		if v1 then
 		    while v1 do wait(1)

@@ -67,8 +67,35 @@ if gameName == "YBA" then
         end,
     })
 
+    local WorthinessTable = {
+        ["I"] = 1,
+        ["II"] = 2,
+        ["III"] = 3,
+        ["IV"] = 4,
+        ["V"] = 5
+    }
+
+    local WorthinessChosen = nil
+    local WorthinessChoose = Game:CreateSlider({
+        Name = "Worthiness Choose",
+        Range = {0, 5},
+        Increment = 1,
+        Suffix = "I-V",
+        CurrentValue = 5,
+        Flag = "YBA_WorthinessChoose", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(Value)
+            v1 = Value
+
+            for rim, num in pairs(WorthinessTable)do
+                if v1 == num then
+                    WorthinessChosen = rim
+                end
+            end
+        end,
+    })
+
     local WorthinessUpgrade = Game:CreateKeybind({
-        Name = "Worthiness Upgrade (V)",
+        Name = "Worthiness Upgrade",
         CurrentKeybind = "M",
         HoldToInteract = false,
         Flag = "YBA_WorthinessUpgrade", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -78,13 +105,15 @@ if gameName == "YBA" then
             local A_1 = "LearnSkill"
             local A_2 = 
             {
-                ["Skill"] = "Worthiness V", 
+                ["Skill"] = "Worthiness "..WorthinessChosen, 
                 ["SkillTreeType"] = "Character"
             }
             local Event = game.Players.LocalPlayer.Character.RemoteFunction
             Event:InvokeServer(A_1, A_2)
         end,
     })
+elseif gameName == "AUT" then
+
 end
 
 Rayfield:LoadConfiguration()

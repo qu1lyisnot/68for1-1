@@ -420,17 +420,14 @@ function Library:create(options)
 	}
     local configurationFolder = options.ConfigFolder
 
-    function saveConfiguration()
-        if (writefile) and (readfile) then
-            if readfile(configurationFolder.."/uiSettings.json") then
-                settings = HTTPService:JSONDecode(readfile(configurationFolder.."/uiSettings.json"))
-                writefile(configurationFolder.."/uiSettings.json", HTTPService:JSONEncode(settings))
-            else
-                writefile(configurationFolder.."/uiSettings.json", HTTPService:JSONEncode(settings))
+    function Configuration()
+        if writefile and writefile and isfile then
+            if not isfile(configurationFolder) or not isfile(configurationFolder..'/uiSettings.json') then
+                writefile(configurationFolder..'/uiSettings.json', HTTPService:JSONEncode(settings))
             end
-        end
+        end 
     end
-    saveConfiguration()
+    Configuration()
 
 	options = self:set_defaults({
 		Name = "Mercury",

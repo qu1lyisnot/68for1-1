@@ -71,7 +71,7 @@ local Library = {
             Secondary = Color3.fromRGB(216, 216, 216),
             Tertiary = Color3.fromRGB(85, 132, 218),
 
-            StrongText = Color3.fromRGB(85, 132, 218),        
+            StrongText = Color3.fromRGB(85, 132, 218),  
             WeakText = Color3.fromRGB(85, 132, 218)
     }
 	},
@@ -418,17 +418,16 @@ function Library:create(options)
 	local settings = {
 		Theme = "Dark"
 	}
-    local configurationFolder = options.ConfigFolder
- 
+
 	if readfile and writefile and isfile then
-		if not isfile(configurationFolder..'/UISettings.json') then
-			writefile(configurationFolder..'/UISettings.json', HTTPService:JSONEncode(settings))
+		if not isfile("MercurySettings.json") then
+			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
 		end
-		settings = HTTPService:JSONDecode(readfile(configurationFolder..'/UISettings.json'))
+		settings = HTTPService:JSONDecode(readfile("MercurySettings.json"))
 		Library.CurrentTheme = Library.Themes[settings.Theme]
 		updateSettings = function(property, value)
 			settings[property] = value
-			writefile(configurationFolder..'/UISettings.json', HTTPService:JSONEncode(settings))
+			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
 		end
 	end
 

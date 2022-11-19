@@ -32,13 +32,7 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Legacy = {
-		        Main = Color3.fromRGB(195, 196, 196),
-		        Secondary = Color3.fromRGB(216, 216, 216),
-		        Tertiary = Color3.fromRGB(85, 132, 218),
-
-		        StrongText = Color3.fromRGB(85, 132, 218),        
-		        WeakText = Color3.fromRGB(85, 132, 218)},
+		Legacy = {},
 		Serika = {
 			Main = Color3.fromRGB(50, 52, 55),
 			Secondary = Color3.fromRGB(80, 82, 85),
@@ -55,7 +49,14 @@ local Library = {
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		Rust = {},
+		Rust = {
+			Main = Color3.fromRGB(37, 35, 33),
+			Secondary = Color3.fromRGB(65, 63, 63),
+			Tertiary = Color3.fromRGB(237, 94, 38),
+
+			StrongText = Color3.fromHSV(0, 0, 1),		
+			WeakText = Color3.fromHSV(0, 0, 172/255)
+		},
 		Aqua = {
 			Main = Color3.fromRGB(19, 21, 21),
 			Secondary = Color3.fromRGB(65, 63, 63),
@@ -65,7 +66,14 @@ local Library = {
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
 		OperaGX = {},
-		VisualStudio = {}
+		VisualStudio = {
+		        Main = Color3.fromRGB(195, 196, 196),
+		        Secondary = Color3.fromRGB(216, 216, 216),
+		        Tertiary = Color3.fromRGB(85, 132, 218),
+
+		        StrongText = Color3.fromRGB(85, 132, 218),        
+		        WeakText = Color3.fromRGB(85, 132, 218)
+	        }
 	},
 	ColorPickerStyles = {
 		Legacy = 0,

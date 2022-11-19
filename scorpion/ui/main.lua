@@ -418,18 +418,15 @@ function Library:create(options)
 	local settings = {
 		Theme = "Dark"
 	}
+    local configurationFolder = options.ConfigFolder
 
-	if readfile and writefile and isfile then
-		if not isfile('UISettings.json') then
-			writefile(options.ConfigFolder..'/UISettings.json', HTTPService:JSONEncode(settings))
-		end
-		settings = HTTPService:JSONDecode(readfile(options.ConfigFolder..'/UISettings.json'))
-		Library.CurrentTheme = Library.Themes[settings.Theme]
-		updateSettings = function(property, value)
-			settings[property] = value
-			writefile(options.ConfigFolder..'/UISettings.json', HTTPService:JSONEncode(settings))
-		end
-	end
+    function saveConfiguration()
+        if (writefile) and (readfile) then
+            settings = HTTPService:JSONDecode(readfile(configurationFolder.."/uiSettings.json"))
+            writefile(configurationFolder.."/uiSettings.json", HTTPService:JSONEncode(settings))
+        end
+    end
+    saveConfiguration()
 
 	options = self:set_defaults({
 		Name = "Mercury",

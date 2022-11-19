@@ -18,7 +18,6 @@ edited: 1/26
 developers:
 v3rm AbstractPoo	discord Abstract#8007
 v3rm 0xDEITY		discord Deity#0228
-MODIFIED BY QU1LYISNOT
 
 ]]
 
@@ -32,7 +31,14 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Legacy = {},
+		Visual Studio = {
+			Main = Color3.fromRGB(195, 196, 196),
+		        Secondary = Color3.fromRGB(216, 216, 216),
+		        Tertiary = Color3.fromRGB(85, 132, 218),
+
+		        StrongText = Color3.fromRGB(85, 132, 218),
+		        WeakText = Color3.fromRGB(85, 132, 218)
+		},
 		Serika = {
 			Main = Color3.fromRGB(50, 52, 55),
 			Secondary = Color3.fromRGB(80, 82, 85),
@@ -65,15 +71,8 @@ local Library = {
 			StrongText = Color3.fromHSV(0, 0, 1),        
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		OperaGX = {},
-		VisualStudio = {
-			Main = Color3.fromRGB(195, 196, 196),
-			Secondary = Color3.fromRGB(216, 216, 216),
-			Tertiary = Color3.fromRGB(85, 132, 218),
-
-			StrongText = Color3.fromRGB(85, 132, 218),  
-			WeakText = Color3.fromRGB(85, 132, 218)
-		}
+		Vaporwave = {},
+		OperaGX = {}
 	},
 	ColorPickerStyles = {
 		Legacy = 0,
@@ -1015,6 +1014,7 @@ function Library:notification(options)
 		TextColor3 = Color3.fromRGB(255, 255, 255),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextYAlignment = Enum.TextYAlignment.Top,
+		TextTransparency = 1
 	})
 
 	text:tween({Size = UDim2.new(1, 0, 0, text.TextBounds.Y)})

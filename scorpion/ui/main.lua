@@ -131,7 +131,7 @@ function GetAsset(Asset)
     end
 end
 
-function LibraryV2:UI(Name)
+function LibraryV2.UI(Name)
 
     if game.CoreGui:FindFirstChild("TUI2") then
         game.CoreGui.TUI2:Destroy();

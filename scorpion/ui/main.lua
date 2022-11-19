@@ -131,7 +131,7 @@ function GetAsset(Asset)
     end
 end
 
-function LibraryV2.UI(Name)
+function LibraryV2.UI(WName)
 
     if game.CoreGui:FindFirstChild("TUI2") then
         game.CoreGui.TUI2:Destroy();
@@ -141,7 +141,7 @@ function LibraryV2.UI(Name)
     local Library
     Library = {
         _UI = game:GetObjects("rbxassetid://8388979705")[1],
-        Name = Name or "Untitled",
+        Name = WName or "Untitled",
         Tabs = {},
         State = false,
         ToggleKey = Enum.KeyCode.LeftControl,
@@ -253,6 +253,7 @@ function LibraryV2.UI(Name)
     }
     Library._UI.Parent = game.CoreGui
     Library._UI.Enabled = false
+    Library._UI.Name.Text = Library.Name
     Library._UI.IgnoreGuiInset = true
 
     Library._UI.Lib.Exit.MouseButton1Down:Connect(function()

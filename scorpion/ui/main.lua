@@ -422,8 +422,12 @@ function Library:create(options)
 
     function saveConfiguration()
         if (writefile) and (readfile) then
-            settings = HTTPService:JSONDecode(readfile(configurationFolder.."/uiSettings.json"))
-            writefile(configurationFolder.."/uiSettings.json", HTTPService:JSONEncode(settings))
+            if readfile(configurationFolder.."/uiSettings.json") then
+                settings = HTTPService:JSONDecode(readfile(configurationFolder.."/uiSettings.json"))
+                writefile(configurationFolder.."/uiSettings.json", HTTPService:JSONEncode(settings))
+            else
+                writefile(configurationFolder.."/uiSettings.json", HTTPService:JSONEncode(settings))
+            end
         end
     end
     saveConfiguration()

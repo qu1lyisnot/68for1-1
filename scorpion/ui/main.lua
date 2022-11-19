@@ -2,7 +2,7 @@ LibraryV2 = {}
 LibraryV2.__index = LibraryV2
 LibraryV2.Notifications = {}
 
---[[ // Plan 
+--[[ // Plan
 
     Program config checker
     See if user has ever used the script before, else prompt first time UI
@@ -72,16 +72,16 @@ Blur.Parent = game.Lighting
 -- Useful funcs
 
 function TandemTween(tbl, according, totaltime)
-	
-	local time_per = (totaltime/#tbl)
-	
-	for i = 1, #tbl do
-		
-		Tween(according[i], {Position = tbl[i]}, time_per)
-		task.wait(time_per)
-		
-	end
-	
+    
+    local time_per = (totaltime/#tbl)
+    
+    for i = 1, #tbl do
+        
+        Tween(according[i], {Position = tbl[i]}, time_per)
+        task.wait(time_per)
+        
+    end
+    
 end
 
 function Tween(inst, tType, t, yield, pref)
@@ -105,7 +105,7 @@ function Ripple(asset, x, y)
          New_Ripple.Parent = asset
          New_Ripple.ImageTransparency = 0.6
          New_Ripple.Position = u2(0, (x-asset.AbsolutePosition.X), 0, (y-asset.AbsolutePosition.Y-36))
-		 New_Ripple.Size = u2(0, 0, 0, 0)
+         New_Ripple.Size = u2(0, 0, 0, 0)
 
          local Length, Size = 0.6, (asset.AbsoluteSize.X >= asset.AbsoluteSize.Y and asset.AbsoluteSize.X * 1.5 or button.AbsoluteSize.Y * 1.5)
          local Tween = game:GetService("TweenService"):Create(New_Ripple, TweenInfo.new(Length, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
@@ -125,9 +125,9 @@ end
 
 function GetAsset(Asset)
     for i,v in pairs(game.CoreGui:FindFirstChild("TUI2"):GetDescendants()) do
-    	if v.Name == Asset then
-			return v
-		end
+        if v.Name == Asset then
+            return v
+        end
     end
 end
 
@@ -167,7 +167,7 @@ function LibraryV2.UI(Name)
 
         Show = function(show_tbl)
             for i,v in pairs(show_tbl) do
-                v.Visible = true             
+                v.Visible = true            
             end
         end,
 
@@ -253,11 +253,10 @@ function LibraryV2.UI(Name)
     }
     Library._UI.Parent = game.CoreGui
     Library._UI.Enabled = false
-    Library._UI:FindFirstChild("Name").Text = Library.Name
     Library._UI.IgnoreGuiInset = true
 
     Library._UI.Lib.Exit.MouseButton1Down:Connect(function()
-        Tween(Library._UI.Lib, {Position = u2(1, 0, Library._UI.Lib.Position.Y.Scale, 0)}, 0.5) 
+        Tween(Library._UI.Lib, {Position = u2(1, 0, Library._UI.Lib.Position.Y.Scale, 0)}, 0.5)
     end)
 
     --// Top Menu
@@ -308,9 +307,9 @@ function LibraryV2.UI(Name)
         end
 
         local TokenData
-		local Data = pcall(function()
-			TokenData = readfile("spotify.elib")
-		end)
+        local Data = pcall(function()
+            TokenData = readfile("spotify.elib")
+        end)
 
         if not Data then
             local Typestring = "enter your spotify token"
@@ -479,7 +478,7 @@ function LibraryV2:Tab(Name, Icon)
 
         _UI = self._UI
     }
-	table.insert(self.Tabs, Tab)
+    table.insert(self.Tabs, Tab)
     
     Tab.Tab.Parent = self._UI.TabContainer.Holder
     Tab.Update()
@@ -612,9 +611,10 @@ function LibraryV2:Button(Name, Callback)
     return setmetatable(Button, LibraryV2)
 end
 
-function LibraryV2:Toggle(Name, StartingState, Callback, RunOnStart)
+function LibraryV2:Toggle(Name, StartingState, Callback)
     local Toggle
     Toggle = {
+
         Name = Name,
         State = StartingState,
         Callback = Callback or function() end,
@@ -641,10 +641,6 @@ function LibraryV2:Toggle(Name, StartingState, Callback, RunOnStart)
         Ripple(Toggle.Asset, X, Y)
     end)
 
-    if Toggle.State == true and RunOnStart then
-        pcall(Toggle.Callback, Toggle.State)
-    end
-    
     return setmetatable(Toggle, LibraryV2)
 end
 
@@ -722,7 +718,7 @@ function LibraryV2:Dropdown(Name, List, Callback)
 
     Dropdown.Asset.MouseButton1Down:Connect(function(X, Y)
         if Dropdown.Debounce then return end
-		Ripple(Dropdown.Asset, X, Y)
+        Ripple(Dropdown.Asset, X, Y)
 
         if State and Dropdown.Asset.Size.Y.Offset == 50 then
             State = not State
@@ -789,22 +785,22 @@ function LibraryV2:Keybind(Name, Starting_Key, Blacklisted_Keys, Callback)
         Connections = {In_Change = false},
 
         ValidKey = function(Key)
-			return (typeof(Key) == "EnumItem")
-		end,
+            return (typeof(Key) == "EnumItem")
+        end,
 
-		GetKeystringFromEnum = function(Key)
-			Key = tostring(Key)
+        GetKeystringFromEnum = function(Key)
+            Key = tostring(Key)
 
             if Key == "..." then
                 return "..."
             end
 
-			return ( string.sub( Key,  14, #Key ) )
-		end,
+            return ( string.sub( Key,  14, #Key ) )
+        end,
 
-		IsNotMouse = function(Key)
-			return (Key.UserInputType == Enum.UserInputType.MouseButton1 or Key.UserInputType == Enum.UserInputType.MouseButton2)
-		end,
+        IsNotMouse = function(Key)
+            return (Key.UserInputType == Enum.UserInputType.MouseButton1 or Key.UserInputType == Enum.UserInputType.MouseButton2)
+        end,
 
         Update = function(...)
             Keybind.Asset.Text = "  "..Keybind.Name
@@ -888,7 +884,7 @@ function LibraryV2:TextBox(Name, Callback)
         Update = function(...)
             TextBox.Asset.Text = "  "..TextBox.Name
 
-			local Args = {...}
+            local Args = {...}
             if Args[1] then
                 TextBox.Asset.Cover.BoxText.Text = Args[1]
                 pcall(TextBox.Callback, Args[1])
@@ -915,7 +911,7 @@ function LibraryV2:TextBox(Name, Callback)
             TextBox.Asset.Cover.BoxText:CaptureFocus()
             TextBox.Asset.Cover.BoxText.FocusLost:Wait()
             pcall(TextBox.Callback, TextBox.Asset.Cover.BoxText.Text)
-				
+                
             task.wait(0.2)
             TextBox.CanCall = true
         end
@@ -929,7 +925,7 @@ function LibraryV2:Slider(Name, Min, Max, Start, Callback, Use_Decimals)
         Name = Name,
         Min = Min or 0,
         Max = Max or 100,
-        Value = Start or 0,
+        Value = Start or math.floor((Max/2)+0.5),
         Callback = Callback or function() end,
         Class = "Slider",
 
@@ -944,13 +940,13 @@ function LibraryV2:Slider(Name, Min, Max, Start, Callback, Use_Decimals)
             Slider.Asset:FindFirstChild("Name").Text = Slider.Name
 
             local New = Slider.Value
-            Slider.Asset.Slider_Whole.Slider:TweenSize(UDim2.new((New - Slider.Min)/(Slider.Max - Slider.Min), 0, 1, 0), "Out", "Sine", 0.1, true)
-			Slider.Asset.Percentage.Text = tostring(New)
+            Slider.Asset.Slider_Whole.Slider:TweenSize(UDim2.new((New or 0) / Slider.Max, 0, 1, 0), "Out", "Sine", 0.1, true)
+            Slider.Asset.Percentage.Text = tostring(New)
 
             --[[
-			if bool then
-				pcall(Slider.Callback, New)
-			end--]]
+            if bool then
+                pcall(Slider.Callback, New)
+            end--]]
         end
     }
     table.insert(self.Assets, Slider.Asset)
@@ -996,8 +992,14 @@ function LibraryV2:Slider(Name, Min, Max, Start, Callback, Use_Decimals)
 
 end
 
-function LibraryV2:Update_(a_1, ...)
+function LibraryV2:Update(a_1, ...)
     local Class = self.Class;
+
+    if (...) then
+        for i,v in pairs({...}) do
+            self[i] = v
+        end
+    end;
 
     if not a_1 then return end;
     if Class == "Button" then
@@ -1005,13 +1007,10 @@ function LibraryV2:Update_(a_1, ...)
     elseif Class == "Toggle" then
         self.State = a_1;
         self.Update();
-    
-        task.spawn(function()
-            pcall(self.Callback, self.State)
-        end)
+        pcall(self.Callback, self.State)
     elseif Class == "Label" then
         self.Text = a_1;
-    elseif Class == "Slider" then       
+    elseif Class == "Slider" then      
         self.Value = a_1;
     elseif Class == "Dropdown" then
         self.List = a_1;
@@ -1031,17 +1030,17 @@ function LibraryV2:UpdateNotifications()
             Tween(Notif, {Position = u2(1, Notif.Position.X.Offset, Notif.Position.Y.Scale, Notif.Position.Y.Offset)}, 0.55)
             
             delay(0.55, function()
-				Notif:Destroy()
-			end)
+                Notif:Destroy()
+            end)
             table.remove(LibraryV2.Notifications, i)
         end
     end
 
-	if #LibraryV2.Notifications > 1 then
-		table.sort(LibraryV2.Notifications, function(a, b)
-			return a.Data.Queue < b.Data.Queue
-		end)
-	end
+    if #LibraryV2.Notifications > 1 then
+        table.sort(LibraryV2.Notifications, function(a, b)
+            return a.Data.Queue < b.Data.Queue
+        end)
+    end
 
     for i,v in ipairs(LibraryV2.Notifications) do
         --Let's determine if its a new notification or already tweened

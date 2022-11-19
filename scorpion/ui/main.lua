@@ -32,13 +32,13 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Visual Studio = {
+		VisualStudio = {
 			Main = Color3.fromRGB(195, 196, 196),
-		        Secondary = Color3.fromRGB(216, 216, 216),
-		        Tertiary = Color3.fromRGB(85, 132, 218),
+		    Secondary = Color3.fromRGB(216, 216, 216),
+		    Tertiary = Color3.fromRGB(85, 132, 218),
 
-		        StrongText = Color3.fromRGB(85, 132, 218),
-		        WeakText = Color3.fromRGB(85, 132, 218)
+		    StrongText = Color3.fromRGB(85, 132, 218),
+		    WeakText = Color3.fromRGB(85, 132, 218)
 		},
 		Serika = {
 			Main = Color3.fromRGB(50, 52, 55),
@@ -1015,7 +1015,6 @@ function Library:notification(options)
 		TextColor3 = Color3.fromRGB(255, 255, 255),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextYAlignment = Enum.TextYAlignment.Top,
-		TextTransparency = 1
 	})
 
 	text:tween({Size = UDim2.new(1, 0, 0, text.TextBounds.Y)})

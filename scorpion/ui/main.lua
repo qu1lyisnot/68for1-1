@@ -420,7 +420,7 @@ function Library:create(options)
 	}
 
 	if readfile and writefile and isfile then
-		if not isfile(options.ConfigFolder..'/UISettings.json') then
+		if not isfile('UISettings.json') then
 			writefile(options.ConfigFolder..'/UISettings.json', HTTPService:JSONEncode(settings))
 		end
 		settings = HTTPService:JSONDecode(readfile(options.ConfigFolder..'/UISettings.json'))

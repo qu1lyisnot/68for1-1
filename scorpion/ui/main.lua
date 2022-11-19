@@ -14,7 +14,7 @@
 █░░░░░░██████████░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░███████░░░░░░███████
 ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 
-edited: 19.11.2022
+edited: 1/26
 developers:
 v3rm AbstractPoo	discord Abstract#8007
 v3rm 0xDEITY		discord Deity#0228
@@ -67,13 +67,13 @@ local Library = {
 		},
 		OperaGX = {},
 		VisualStudio = {
-		        Main = Color3.fromRGB(195, 196, 196),
-		        Secondary = Color3.fromRGB(216, 216, 216),
-		        Tertiary = Color3.fromRGB(85, 132, 218),
+            Main = Color3.fromRGB(195, 196, 196),
+            Secondary = Color3.fromRGB(216, 216, 216),
+            Tertiary = Color3.fromRGB(85, 132, 218),
 
-		        StrongText = Color3.fromRGB(85, 132, 218),        
-		        WeakText = Color3.fromRGB(85, 132, 218)
-	        }
+            StrongText = Color3.fromRGB(85, 132, 218),        
+            WeakText = Color3.fromRGB(85, 132, 218)
+    }
 	},
 	ColorPickerStyles = {
 		Legacy = 0,
@@ -420,14 +420,14 @@ function Library:create(options)
 	}
 
 	if readfile and writefile and isfile then
-		if not isfile("MercurySettings.json") then
-			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
+		if not isfile(options.ConfigFolder..'/UISettings.json') then
+			writefile(options.ConfigFolder..'/UISettings.json', HTTPService:JSONEncode(settings))
 		end
-		settings = HTTPService:JSONDecode(readfile("MercurySettings.json"))
+		settings = HTTPService:JSONDecode(readfile(options.ConfigFolder..'/UISettings.json'))
 		Library.CurrentTheme = Library.Themes[settings.Theme]
 		updateSettings = function(property, value)
 			settings[property] = value
-			writefile("MercurySettings.json", HTTPService:JSONEncode(settings))
+			writefile(options.ConfigFolder..'/UISettings.json', HTTPService:JSONEncode(settings))
 		end
 	end
 

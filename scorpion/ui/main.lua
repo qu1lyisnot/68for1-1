@@ -14,7 +14,7 @@
 █░░░░░░██████████░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░███████░░░░░░███████
 ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 
-edited: 19/11/2022
+edited: 20.11.2022
 developers:
 v3rm AbstractPoo	discord Abstract#8007
 v3rm 0xDEITY		discord Deity#0228
@@ -37,7 +37,7 @@ local Library = {
 		    Secondary = Color3.fromRGB(216, 216, 216),
 		    Tertiary = Color3.fromRGB(85, 132, 218),
 
-		    StrongText = Color3.fromRGB(85, 132, 218),
+		    StrongText = Color3.fromRGB(48, 106, 212),
 		    WeakText = Color3.fromRGB(85, 132, 218)
 		},
 		Serika = {
@@ -480,7 +480,6 @@ function Library:create(options)
 	}):round(10)
 
 	core:fade(true, nil, 0.2, true)
-
 
 	core:fade(false, nil, 0.4)
 	core:tween({Size = options.Size, Length = 0.3}, function()

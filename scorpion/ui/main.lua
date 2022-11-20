@@ -18,7 +18,8 @@ edited: 20.11.2022
 developers:
 v3rm AbstractPoo	discord Abstract#8007
 v3rm 0xDEITY		discord Deity#0228
-MODIFIED BY QU1LY
+modifier of lib:
+v3rm qu1lyisnot         discord 2high.nelly#4907
 
 ]]
 

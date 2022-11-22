@@ -13,7 +13,7 @@
 █░░▄▀░░██████████░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░███████░░▄▀░░███████
 █░░░░░░██████████░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░███████░░░░░░███████
 ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-
+h
 edited: 20.11.2022
 developers:
 v3rm AbstractPoo	discord Abstract#8007
@@ -105,7 +105,7 @@ Library.blur.Size = 0
 Library.blur.Enabled = false
 Library.blur.Parent = game:GetService('Lighting')
 
-getgenv().uiSettings = {blur = 16}
+getgenv().uiSettings = {Blur = true}
 
 local selectedTab
 
@@ -378,15 +378,22 @@ function Library:show(state)
 			rawset(self.mainFrame, "oldSize", (state and self.mainFrame.oldSize) or self.mainFrame.Size)
 			self.mainFrame.ClipsDescendants = false
 		end)
-		Library.blur.Enabled = true
-		game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = getgenv().uiSettings.blur}):Play()
-		wait(0.15)
+		if _G.uiSettings.Blur then
+			Library.blur.Enabled = true
+			game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 16}):Play()
+		end
+
+		task.wait(0.15)
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
 	else
-		game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 0}):Play()
-		Library.blur.Enabled = false
+		if not _G.uiSettings.Blur then
+			local t = game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 0}):Play()
+			t.Completed:Wait()
+			Library.blur.Enabled = false
+		end
+
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
-		wait(0.1)
+		task.wait(0.1)
 		self.mainFrame:tween{Size = UDim2.new(), Length = 0.25}
 	end
 end
@@ -428,7 +435,8 @@ end
 function Library:create(options)
 
 	local settings = {
-		Theme = "Dark"
+		Theme = "Dark",
+		Blur = _G.uiSettings.Blur
 	}
 
 	if readfile and writefile and isfile then
@@ -901,6 +909,15 @@ function Library:create(options)
 			self.Toggled = not self.Toggled
 			Library:show(self.Toggled)
 		end,
+	}
+
+	settingsTab:toggle{
+		Name = "Toggle Blur",
+		Description = "Makes blur after toggling ui",
+		StartingState = _G.uiSettings.Blur,
+		Callback = function(state)
+			_G.uiSettings.Blur = state
+		end,		
 	}
 
 	settingsTab:toggle{

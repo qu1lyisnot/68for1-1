@@ -19,7 +19,7 @@ developers:
 v3rm AbstractPoo	discord Abstract#8007
 v3rm 0xDEITY		discord Deity#0228
 modifier of lib:
-v3rm qu1lyisnot         discord 2high.nelly#4907
+v3rm qu1lyisnot     discord 2high.nelly#4907
 
 ]]
 
@@ -99,6 +99,13 @@ local Library = {
 
 }
 Library.__index = Library
+
+Library.blur = Instance.new('BlurEffect')
+Library.blur.Size = 0
+Library.blur.Enabled = false
+Library.blur.Parent = game:GetService('Lighting')
+
+getgenv().uiSettings = {blur = 16}
 
 local selectedTab
 
@@ -371,9 +378,13 @@ function Library:show(state)
 			rawset(self.mainFrame, "oldSize", (state and self.mainFrame.oldSize) or self.mainFrame.Size)
 			self.mainFrame.ClipsDescendants = false
 		end)
+		Library.blur.Enabled = true
+		game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = getgenv().uiSettings.blur}):Play()
 		wait(0.15)
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
-	else		
+	else
+		game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 0}):Play()
+		Library.blur.Enabled = false
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
 		wait(0.1)
 		self.mainFrame:tween{Size = UDim2.new(), Length = 0.25}
@@ -884,7 +895,7 @@ function Library:create(options)
 
 	settingsTab:keybind{
 		Name = "Toggle Key",
-		Description = "Key to show/hide the UI.",
+		Description = "Key to /hide the UI.",
 		Keybind = Enum.KeyCode.Delete,
 		Callback = function()
 			self.Toggled = not self.Toggled

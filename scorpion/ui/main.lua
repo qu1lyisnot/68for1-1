@@ -13,8 +13,8 @@
 █░░▄▀░░██████████░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░███████░░▄▀░░███████
 █░░░░░░██████████░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░███████░░░░░░███████
 ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-
-edited: 22.11.2022
+h
+edited: 20.11.2022
 developers:
 v3rm AbstractPoo	discord Abstract#8007
 v3rm 0xDEITY		discord Deity#0228
@@ -378,7 +378,7 @@ function Library:show(state)
 			rawset(self.mainFrame, "oldSize", (state and self.mainFrame.oldSize) or self.mainFrame.Size)
 			self.mainFrame.ClipsDescendants = false
 		end)
-		if _G.uiSettings.Blur then
+		if getgenv().uiSettings.Blur then
 			Library.blur.Enabled = true
 			game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 16}):Play()
 		end
@@ -386,7 +386,7 @@ function Library:show(state)
 		task.wait(0.15)
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
 	else
-		if not _G.uiSettings.Blur then
+		if not getgenv().uiSettings.Blur then
 			local t = game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 0}):Play()
 			t.Completed:Wait()
 			Library.blur.Enabled = false
@@ -436,7 +436,7 @@ function Library:create(options)
 
 	local settings = {
 		Theme = "Dark",
-		Blur = _G.uiSettings.Blur
+		Blur = getgenv().uiSettings.Blur or false
 	}
 
 	if readfile and writefile and isfile then
@@ -914,9 +914,9 @@ function Library:create(options)
 	settingsTab:toggle{
 		Name = "Toggle Blur",
 		Description = "Makes blur after toggling ui",
-		StartingState = _G.uiSettings.Blur,
+		StartingState = getgenv().uiSettings.Blur,
 		Callback = function(state)
-			_G.uiSettings.Blur = state
+			getgenv().uiSettings.Blur = state
 		end,		
 	}
 

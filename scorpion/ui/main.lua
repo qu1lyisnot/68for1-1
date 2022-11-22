@@ -435,8 +435,7 @@ end
 function Library:create(options)
 
 	local settings = {
-		Theme = "Dark",
-		Blur = getgenv().uiSettings.Blur or false
+		Theme = "Dark"
 	}
 
 	if readfile and writefile and isfile then

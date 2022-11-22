@@ -386,9 +386,9 @@ function Library:show(state)
 		task.wait(0.15)
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
 	else
-		if not getgenv().uiSettings.Blur then
+		if getgenv().uiSettings.Blur then
 			local t = game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 0}):Play()
-			t.Completed:Wait()
+			task.wait(.35)
 			Library.blur.Enabled = false
 		end
 

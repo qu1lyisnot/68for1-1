@@ -100,13 +100,6 @@ local Library = {
 }
 Library.__index = Library
 
-Library.blur = Instance.new('BlurEffect')
-Library.blur.Size = 0
-Library.blur.Enabled = false
-Library.blur.Parent = game:GetService('Lighting')
-
-getgenv().uiSettings = {Blur = true}
-
 local selectedTab
 
 Library._promptExists = false
@@ -378,19 +371,10 @@ function Library:show(state)
 			rawset(self.mainFrame, "oldSize", (state and self.mainFrame.oldSize) or self.mainFrame.Size)
 			self.mainFrame.ClipsDescendants = false
 		end)
-		if getgenv().uiSettings.Blur == false then
-			Library.blur.Enabled = true
-			game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 16}):Play()
-		end
 
 		task.wait(0.15)
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
 	else
-		if getgenv().uiSettings.Blur == true then
-			game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 0}):Play()
-			task.wait(.35)
-			Library.blur.Enabled = false
-		end
 
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
 		task.wait(0.1)
@@ -908,15 +892,6 @@ function Library:create(options)
 			self.Toggled = not self.Toggled
 			Library:show(self.Toggled)
 		end,
-	}
-
-	settingsTab:toggle{
-		Name = "Toggle Blur",
-		Description = "Makes blur after toggling ui",
-		StartingState = getgenv().uiSettings.Blur,
-		Callback = function(state)
-			getgenv().uiSettings.Blur = state
-		end,		
 	}
 
 	settingsTab:toggle{

@@ -378,7 +378,7 @@ function Library:show(state)
 			rawset(self.mainFrame, "oldSize", (state and self.mainFrame.oldSize) or self.mainFrame.Size)
 			self.mainFrame.ClipsDescendants = false
 		end)
-		if getgenv().uiSettings.Blur then
+		if getgenv().uiSettings.Blur == false then
 			Library.blur.Enabled = true
 			game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 16}):Play()
 		end
@@ -386,7 +386,7 @@ function Library:show(state)
 		task.wait(0.15)
 		self.mainFrame:fade(not state, self.mainFrame.BackgroundColor3, 0.15)
 	else
-		if getgenv().uiSettings.Blur then
+		if getgenv().uiSettings.Blur == true then
 			game:GetService("TweenService"):Create(Library.blur, TweenInfo.new(.35), {Size = 0}):Play()
 			task.wait(.35)
 			Library.blur.Enabled = false
